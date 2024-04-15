@@ -1,4 +1,9 @@
-const secondName=prompt ('Введите вашу фамилию')
+const enterSecondName=prompt ('Введите вашу фамилию')
+
+if (enterSecondName)
+    secondName=enterSecondName
+else secondName='Это обязательное поле'
+
 
 const name=prompt ('Введите ваше имя')
 const surName=prompt ('Введите ваше отчество')
@@ -18,9 +23,8 @@ if (confirm('Ваш пол мужской?')){
 }
 
 
-
 alert(`
-    ваше ФИО: ${Boolean(secondName)} ${Boolean(name)} ${Boolean(surName)}
+    ваше ФИО: ${secondName} ${name} ${surName}
     ваш возраст в годах: ${parseInt(age)}
     ваш возраст в днях: ${parseInt(age)*365}
     через 5 лет вам будет: ${parseInt(age)+5}
