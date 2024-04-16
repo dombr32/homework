@@ -1,13 +1,18 @@
-const enterSecondName=prompt ('Введите вашу фамилию')
+do {
+     secondName= prompt("Введите вашу фамилию")
+} while (secondName == '')
 
-if (enterSecondName)
-    secondName=enterSecondName
-else secondName='Это обязательное поле'
+do {
+    name=prompt ('Введите ваше имя')
+} while (name == false)
 
+do {
+    surName=prompt ('Введите ваше отчество')
+} while (surName == false)
 
-const name=prompt ('Введите ваше имя')
-const surName=prompt ('Введите ваше отчество')
-let age=prompt ('Сколько вам лет?')
+do {
+    age=prompt ('Сколько вам лет?')
+} while (age == false)
 
 
 if (confirm('Ваш пол мужской?')){
