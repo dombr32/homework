@@ -1,18 +1,18 @@
 do {
      secondName= prompt("Введите вашу фамилию")
-} while (secondName == '')
+} while (secondName == '' || secondName == null)
 
 do {
-    name=prompt ('Введите ваше имя')
-} while (name == false)
+    Name=prompt ('Введите ваше имя')
+} while (Name == null || Name == "")
 
 do {
     surName=prompt ('Введите ваше отчество')
-} while (surName == false)
+} while (surName == null || surName == "")
 
 do {
     age=prompt ('Сколько вам лет?')
-} while (age == false)
+} while (age == null || age == '' || isNaN(parseInt(age)))
 
 
 if (confirm('Ваш пол мужской?')){
@@ -29,7 +29,7 @@ if (confirm('Ваш пол мужской?')){
 
 
 alert(`
-    ваше ФИО: ${secondName} ${name} ${surName}
+    ваше ФИО: ${secondName} ${Name} ${surName}
     ваш возраст в годах: ${parseInt(age)}
     ваш возраст в днях: ${parseInt(age)*365}
     через 5 лет вам будет: ${parseInt(age)+5}
