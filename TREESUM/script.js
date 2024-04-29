@@ -1,15 +1,15 @@
+function treesum (arr) {
+  let sum=0;
+  for (let i=0; i < arr.length; i++) {
 
-  function sumArray (array){
-    let sum = 0
-    for (let i=0; i < array.lenght; i++)
-      if (Array.isArray(i)){
-      sum += sumArray(i)} else{
-      sum += i}
-    return sum 
+  let item = arr[i]
+  if ( Array.isArray(item)){
+    sum += treesum (item)
+  } else {
+    sum += item
   }
- 
-  console.log(sumArray([ 5, 7, 
-    [ 4, [2], 8, [1,3], 2 ], 
-    [ 9, [] ], 
-    1, 8 ]))
+} 
+  return sum  
+}
 
+console.log (treesum([0,5,[4],7]))
