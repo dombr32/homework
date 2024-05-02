@@ -7,15 +7,15 @@ const colors=[ '', 'красный', 'оранжевый', 'жёлтый', 'зе
 
 console.log( 'цветов: ' + colorsCount );
     
-
+const usedColors = {}
     for ( let i=1; i<=colorsCount; i++ ) {
         const n=randomDiap(1,7);
         const colorName=colors[n];
-        console.log( colorName );
-            if ( n==colors.length)
-            delete colors[n-i-1]; else
-            delete colors[n-i]
-        
+            if (!(colorName in usedColors)){
+                usedColors[colorName]=1
+                console.log( colorName )} else {
+                colorsCount++
+                }        
     }
 }
 
