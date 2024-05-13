@@ -1,35 +1,36 @@
-
-function f (word) {
-        
-    const vowel = {У:true, у:true, е:true, Е:true, Ы:true, ы:true, О:true, о:true, Э:true, э:true, я:true, Я:true, И:true, 
-        и:true, Ю:true, ю:true, Ё:true, ё:true, А:true, а:true};
-    let total = 0;
-    const used = {}
-    if (word in vowel){
-        used[word]=true
-        console.log(Object.keys(used).length)
+function vowelsForEach (text){
+    const vowels = ('аяоёуюэеыи');
+    const arr = text.toLowerCase().split('');
+    const f = word => {
+        if (vowels.includes(word))
+        totalVowel ++
     }
-    
+    let totalVowel = 0;
+    arr.forEach(f);
+    console.log(totalVowel);
+
 }
 
-function ff (word) {
-    const vowel = {У:true, у:true, е:true, Е:true, Ы:true, ы:true, О:true, о:true, Э:true, э:true, я:true, Я:true, И:true, 
-        и:true, Ю:true, ю:true, Ё:true, ё:true, А:true, а:true};
-    return (word in vowel)
+function vowelsFilter (text){
+    const vowels = ('аяоёуюэеыи');
+    const arr = text.toLowerCase().split('');
+    //const ff = word => vowels.includes(word)
+    //const totalVowel = arr.filter(word => vowels.includes(word)).length;
+    console.log(arr.filter(word => vowels.includes(word)).length)
 }
 
-function fm (r, word){
-    const vowel = {У:true, у:true, е:true, Е:true, Ы:true, ы:true, О:true, о:true, Э:true, э:true, я:true, Я:true, И:true, 
-        и:true, Ю:true, ю:true, Ё:true, ё:true, А:true, а:true};
-    
-    if (word in vowel)
-    word = 1; else 
-    word=0
-    return r+word
+function vowelsReduce (text){
+    const vowels = ('аяоёуюэеыи');
+    const arr = text.toLowerCase().split('');    
+    //const fm = (r, word) => {
+    //    return r+=vowels.includes(word)
+    //}
+    console.log(arr.reduce((r, word) => {
+        return r+=vowels.includes(word)
+    }, 0))
 }
-    
-    let text = prompt('Введите текст');
-    let textarr = text.split("");
-    textarr.forEach(f);
-    console.log(textarr.filter(ff))
-    console.log(textarr.reduce(fm, 0))
+
+const text = prompt("Введите текст")
+vowelsForEach (text);
+vowelsFilter (text);
+vowelsReduce (text)
