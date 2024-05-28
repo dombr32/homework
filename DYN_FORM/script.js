@@ -25,9 +25,9 @@ const formDef2=
 
 
 
-function form1 (form1, form2) {
+function forms (form1) {
   let n1 = document.createElement("form")
-    //n1.setAttribute("action", "https://fe.it-academy.by/TestForm.php");
+    n1.setAttribute("action", "https://fe.it-academy.by/TestForm.php");
     dynForm.appendChild(n1)
   
   let sitenameLabel = document.createTextNode(form1[0].label)
@@ -115,18 +115,16 @@ function form1 (form1, form2) {
   let submit1 = document.createElement('input')
     submit1.setAttribute("value", form1[8].caption);
     submit1.setAttribute("type", "button");
-    submit1.setAttribute("onclick", "form1(formDef2)");
+    submit1.setAttribute("onclick", "forms(formDef2)");
   n1.appendChild(submit1)
 
 
-  let lastNameLabel = document.createTextNode(form2[0].label)
-  let lastName = document.createElement("input")
-  lastName.style.width='400px'
-  n1.appendChild(lastNameLabel)
-  n1.appendChild(lastName)
-  n1.appendChild(document.createElement("br"))
+  let submit = document.createElement('input')
+    submit.setAttribute("value", form1[4].caption);
+    submit.setAttribute("type", "submit");
+    submit.setAttribute("onclick", "continue)");
+  n1.appendChild(submit)
 
 }
 
-form1 (formDef1);
-//form1 (formDef2);
+forms (formDef1);
