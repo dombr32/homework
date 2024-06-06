@@ -220,6 +220,7 @@ function validForm (){
     form.appendChild(catalogField);
     const catalogEror = document.createElement("span");
     const catalogErorText= document.createTextNode("  *к сожалению, в данный момент эта рубрика недоступна")
+    const catalogErorText2= document.createTextNode("  *это значение по умолчанию. вы уверены?");
     form.appendChild(catalogEror);
 
     catalogField.addEventListener('click',validatecatalogField,false);
@@ -424,13 +425,13 @@ function validForm (){
                 
             }
 
-            // if ( cataloglValue =="") {
-            //     const catalogErorText2= document.createTextNode("  *вы ничего не выбрали");
-            //     catalogEror.appendChild(catalogErorText2);
-            //     catalogField.style.backgroundColor="pink";
-            //     catalogField.focus();
-            //     eo.preventDefault();   
-            // }
+            
+            if ( cataloglValue =="1") {
+                
+                catalogEror.appendChild(catalogErorText2);
+                catalogField.style.backgroundColor="pink";
+                catalogField.focus(); 
+            }
 
             if (cataloglValue ==2) {
                 catalogEror.appendChild(catalogErorText); 
@@ -462,6 +463,13 @@ function validForm (){
         function validatePaymentAfterSub(eo) {
             eo=eo||window.event;
             paymentEror.removeChild(paymentErorText2); 
+        }
+
+        catalogField.addEventListener('click',validateCatalofAfterSub,false);
+        function validateCatalofAfterSub (eo) {
+            eo=eo||window.event;
+            catalogEror.removeChild(catalogErorText2);
+            catalogField.style.backgroundColor="";
         }
 
 }
