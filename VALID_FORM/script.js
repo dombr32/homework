@@ -426,11 +426,10 @@ function validForm (){
             }
 
             
-            if ( cataloglValue =="1") {
+            if ( cataloglValue ==1) {
                 
                 catalogEror.appendChild(catalogErorText2);
                 catalogField.style.backgroundColor="pink";
-                catalogField.focus(); 
             }
 
             if (cataloglValue ==2) {
