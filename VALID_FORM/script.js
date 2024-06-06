@@ -68,7 +68,7 @@ function validForm (){
 
     const url = document.createTextNode("URL сайта:");
     const urlField = document.createElement("input");
-    urlField.setAttribute("type", "url");
+    //urlField.setAttribute("type", "url");
     urlField.setAttribute("name", "urlField");
     form.appendChild(url);
     form.appendChild(urlField);
@@ -128,12 +128,13 @@ function validForm (){
 
     const visitors = document.createTextNode("Посетителей в сутки:");
     const visitorsField = document.createElement("input");
-    visitorsField.setAttribute("type", "number");
+    //visitorsField.setAttribute("type", "number");
     visitorsField.setAttribute("name", "visitorsField");
     form.appendChild(visitors);
     form.appendChild(visitorsField);
         const visitorsEror = document.createElement("span");
-        const visitorsErorText= document.createTextNode("  *это поле обязательное для заполнения (ЧИСЛОВОЙ ФОРМАТ)")
+        const visitorsErorText= document.createTextNode("  *это поле обязательное для заполнения")
+        const visitorsErorNanText= document.createTextNode("  *введите число")
         form.appendChild(visitorsEror);
 
         visitorsField.addEventListener('blur',validatevisitorsField,false);
@@ -148,22 +149,31 @@ function validForm (){
                 return;
             }
 
-            if ( !visitorsValue =="") {
-                visitorsEror.removeChild(visitorsErorText); 
-                visitorsField.style.backgroundColor="white";
+            if ( isNaN(visitorsValue) ) {
+                visitorsField.style.backgroundColor="pink";
+                visitorsEror.appendChild(visitorsErorNanText); 
+                visitorsEror.removeChild(visitorsErorText);
                 return;
             }
+
+            if ( !isNaN(visitorsValue) || !visitorsValue =="") {
+                visitorsField.style.backgroundColor="white";
+                visitorsEror.removeChild(visitorsErorNanText); 
+                visitorsEror.removeChild(visitorsErorText);
+                return;
+            }
+            
         }
     form.appendChild(document.createElement("br"));
 
     const email = document.createTextNode("E-mail для связи:");
     const emailField = document.createElement("input");
-    emailField.setAttribute("type", "email");
+    //emailField.setAttribute("type", "email");
     emailField.setAttribute("name", "emailField");
     form.appendChild(email);
     form.appendChild(emailField);
         const emailEror = document.createElement("span");
-        const emailErorText= document.createTextNode("  *это поле обязательное для заполнения (ФОРМАТ EMAIL)")
+        const emailErorText= document.createTextNode("  *это поле обязательное для заполнения")
         form.appendChild(emailEror);
     
         emailField.addEventListener('blur',validatemailField,false);
@@ -212,7 +222,7 @@ function validForm (){
     const catalogErorText= document.createTextNode("  *к сожалению, в данный момент эта рубрика недоступна")
     form.appendChild(catalogEror);
 
-    catalogField.addEventListener('blur',validatecatalogField,false);
+    catalogField.addEventListener('click',validatecatalogField,false);
     function validatecatalogField (eo) {
         eo=eo||window.event;
         
@@ -232,8 +242,6 @@ function validForm (){
     }
     form.appendChild(document.createElement("br"));
 
-
-    //радиокнопки
     
     const paymentLabel = document.createElement("label");
     const payment = document.createTextNode("Размещение:");
@@ -264,16 +272,20 @@ function validForm (){
 
     const paymentEror = document.createElement("span");
     const paymentErorText= document.createTextNode("  *к сожалению, в данный момент это размещение недоступно");
+    const paymentErorText2= document.createTextNode("  *вы ничего не выбрали");
     form.appendChild(paymentEror);
 
-    paymentLabel.addEventListener('blur',validatepayment,false);
+    paymentLabel.addEventListener('click',validatepayment,false);
     function validatepayment(eo) {
         eo=eo||window.event;
+         
 
-        const paymentlValue=paymentName.value;
+        const paymentlValue=document.forms[0].elements.paymentName.value;
+        
 
         if ( paymentlValue == 3) {
             paymentEror.appendChild(paymentErorText); 
+            paymentEror.removeChild(paymentErorText2);
             return;
         }
 
@@ -281,7 +293,9 @@ function validForm (){
             paymentEror.removeChild(paymentErorText); 
             return;
         }
+        
     }
+
     form.appendChild(document.createElement("br"));
 
     const votes = document.createTextNode("Разрешить отзывы:");
@@ -359,28 +373,14 @@ function validForm (){
             const visitorsValue=visitorsField.value;
             const emailValue=emailField.value;
             const cataloglValue=catalogField.value;
-            const paymentlValue=payment.value;
+            const paymentlValue=document.forms[0].elements.paymentName.value;
             const voteslValue=votesField.checked;
             const dateValue=dateField.value;
 
-            if ( devsValue =="") {
-                devsEror.appendChild(devsErorText); 
-                devsField.style.backgroundColor="pink";
-                devsField.focus(); 
-                eo.preventDefault(); 
-            }
-
-            if (siteNameValue.length>10 || siteNameValue =="") {
-                siteNameEror.appendChild(siteNameErorText); 
-                siteNameField.style.backgroundColor="pink";
-                siteNameField.focus(); 
-                eo.preventDefault(); 
-            }
-
-            if (urlValue =="") {
-                urlEror.appendChild(urlErorText); 
-                urlField.style.backgroundColor="pink";
-                urlField.focus();
+            if ( emailValue =="") {
+                emailEror.appendChild(emailErorText); 
+                emailField.style.backgroundColor="pink";
+                emailField.focus();
                 eo.preventDefault();
             }
 
@@ -391,23 +391,45 @@ function validForm (){
                 eo.preventDefault(); 
             }
 
-            if ( emailValue =="") {
-                emailEror.appendChild(emailErorText); 
-                emailField.style.backgroundColor="pink";
-                emailField.focus();
+            if ( isNaN(visitorsValue) ) {
+                visitorsEror.appendChild(visitorsErorNanText)
+                visitorsField.style.backgroundColor="pink";
+                visitorsField.focus();
+               
+            }
+            
+            if ( dateValue =="") {
+                dateEror.appendChild(dateErorText); 
+                dateField.style.backgroundColor="pink";
+                dateField.scrollIntoView();
                 eo.preventDefault();
+            }
+
+            if (urlValue =="") {
+                urlEror.appendChild(urlErorText); 
+                urlField.style.backgroundColor="pink";
+                urlField.focus();
+                eo.preventDefault();
+            }
+
+            if (siteNameValue.length>10 || siteNameValue =="") {
+                siteNameEror.appendChild(siteNameErorText); 
+                siteNameField.style.backgroundColor="pink";
+                siteNameField.focus(); 
+                eo.preventDefault(); 
+            }
+
+            if ( devsValue =="") {
+                devsEror.appendChild(devsErorText); 
+                devsField.style.backgroundColor="pink";
+                devsField.focus(); 
+                eo.preventDefault(); 
+                
             }
 
             if (cataloglValue ==2) {
                 catalogEror.appendChild(catalogErorText); 
                 catalogField.style.backgroundColor="pink";
-                catalogField.focus();
-                eo.preventDefault();
-            }
-
-            if ( paymentlValue =="") {
-                const paymentErorText2= document.createTextNode("  *вы ничего не выбрали");
-                paymentEror.appendChild(paymentErorText2);
                 catalogField.focus();
                 eo.preventDefault();
             }
@@ -418,12 +440,17 @@ function validForm (){
                 eo.preventDefault();
             }
 
-            if ( dateValue =="") {
-                dateEror.appendChild(dateErorText); 
-                dateField.style.backgroundColor="pink";
-                dateField.scrollIntoView();
+            if ( paymentlValue =="") {
+                paymentEror.appendChild(paymentErorText2);
+                paymentlValue.scrollIntoView();;
+                eo.preventDefault();   
+            }
+  
+            if ( paymentlValue == 3) {
+                paymentlValue.scrollIntoView();;
                 eo.preventDefault();
             }
+      
         }
 
 }
