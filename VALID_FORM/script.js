@@ -279,19 +279,16 @@ function validForm (){
     function validatepayment(eo) {
         eo=eo||window.event;
          
-
         const paymentlValue=document.forms[0].elements.paymentName.value;
         
-
         if ( paymentlValue == 3) {
             paymentEror.appendChild(paymentErorText); 
-            paymentEror.removeChild(paymentErorText2);
-            return;
+            return
         }
 
         if ( paymentlValue !== 3) {
-            paymentEror.removeChild(paymentErorText); 
-            return;
+            paymentEror.removeChild(paymentErorText);
+            return
         }
         
     }
@@ -308,7 +305,7 @@ function validForm (){
     const votesErorText= document.createTextNode("  *требуется разрешить отзывы")
     form.appendChild(votesEror);
 
-    votesField.addEventListener('blur',validatevotesFild,false);
+    votesField.addEventListener('click',validatevotesFild,false);
     function validatevotesFild (eo) {
         eo=eo||window.event;
         
@@ -427,6 +424,14 @@ function validForm (){
                 
             }
 
+            // if ( cataloglValue =="") {
+            //     const catalogErorText2= document.createTextNode("  *вы ничего не выбрали");
+            //     catalogEror.appendChild(catalogErorText2);
+            //     catalogField.style.backgroundColor="pink";
+            //     catalogField.focus();
+            //     eo.preventDefault();   
+            // }
+
             if (cataloglValue ==2) {
                 catalogEror.appendChild(catalogErorText); 
                 catalogField.style.backgroundColor="pink";
@@ -442,7 +447,7 @@ function validForm (){
 
             if ( paymentlValue =="") {
                 paymentEror.appendChild(paymentErorText2);
-                paymentlValue.scrollIntoView();;
+                paymentLabel.scrollIntoView();
                 eo.preventDefault();   
             }
   
@@ -451,6 +456,12 @@ function validForm (){
                 eo.preventDefault();
             }
       
+        }
+
+        paymentLabel.addEventListener('click',validatePaymentAfterSub,false);
+        function validatePaymentAfterSub(eo) {
+            eo=eo||window.event;
+            paymentEror.removeChild(paymentErorText2); 
         }
 
 }
