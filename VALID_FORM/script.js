@@ -23,13 +23,15 @@ function validForm (){
             const devsValue=devsField.value;
 
             if ( devsValue =="") {
-                devsEror.appendChild(devsErorText); 
+                // devsEror.appendChild(devsErorText); 
+                devsEror.innerHTML='<span>*это поле обязательное для заполнения</span>'
                 devsField.style.backgroundColor="pink";
                 return;
             }
 
             if ( !devsValue =="") {
-                devsEror.removeChild(devsErorText); 
+                // devsEror.removeChild(devsErorText); 
+                devsEror.innerHTML='<span></span>'
                 devsField.style.backgroundColor="white";
                 return;
             }
@@ -52,13 +54,15 @@ function validForm (){
                 const siteNameValue=siteNameField.value;
 
                 if (siteNameValue.length>10 || siteNameValue =="") {
-                    siteNameEror.appendChild(siteNameErorText); 
+                    //siteNameEror.appendChild(siteNameErorText); 
+                    siteNameEror.innerHTML='<span>*это поле обязательное для заполнения (длина не больше 10)</span>'
                     siteNameField.style.backgroundColor="pink";
                     return;
                 }
 
                 if (!siteNameValue.length>10 || !siteNameValue =="") {
-                    siteNameEror.removeChild(siteNameErorText); 
+                    //siteNameEror.removeChild(siteNameErorText);
+                    siteNameEror.innerHTML='<span></span>' 
                     siteNameField.style.backgroundColor="white";
                     return;
                 }
@@ -83,13 +87,15 @@ function validForm (){
             const urlValue=urlField.value;
 
             if ( urlValue =="") {
-                urlEror.appendChild(urlErorText); 
+                //urlEror.appendChild(urlErorText); 
+                urlEror.innerHTML='<span>*это поле обязательное для заполнения</span>'
                 urlField.style.backgroundColor="pink";
                 return;
             }
 
             if ( !urlValue =="") {
-                urlEror.removeChild(urlErorText); 
+                // urlEror.removeChild(urlErorText); 
+                urlEror.innerHTML='<span></span>'
                 urlField.style.backgroundColor="white";
                 return;
             }
@@ -113,13 +119,15 @@ function validForm (){
         const dateValue=dateField.value;
 
         if ( dateValue =="") {
-            dateEror.appendChild(dateErorText); 
+            // dateEror.appendChild(dateErorText); 
+            dateEror.innerHTML='<span>*укажите дату</span>'
             dateField.style.backgroundColor="pink";
             return;
         }
 
         if ( !dateValue =="") {
-            dateEror.removeChild(dateErorText); 
+            // dateEror.removeChild(dateErorText);
+            dateEror.innerHTML='<span></span>' 
             dateField.style.backgroundColor="white";
             return;
         }
@@ -144,22 +152,25 @@ function validForm (){
             const visitorsValue=visitorsField.value;
 
             if ( visitorsValue =="") {
-                visitorsEror.appendChild(visitorsErorText); 
+                visitorsEror.innerHTML='<span>*это поле обязательное для заполнения</span>'
+                //visitorsEror.appendChild(visitorsErorText); 
                 visitorsField.style.backgroundColor="pink";
                 return;
             }
 
             if ( isNaN(visitorsValue) ) {
                 visitorsField.style.backgroundColor="pink";
-                visitorsEror.appendChild(visitorsErorNanText); 
-                visitorsEror.removeChild(visitorsErorText);
+                visitorsEror.innerHTML='<span>*введите число</span>'
+                //visitorsEror.appendChild(visitorsErorNanText); 
+                //visitorsEror.removeChild(visitorsErorText);
                 return;
             }
 
             if ( !isNaN(visitorsValue) || !visitorsValue =="") {
                 visitorsField.style.backgroundColor="white";
-                visitorsEror.removeChild(visitorsErorNanText); 
-                visitorsEror.removeChild(visitorsErorText);
+                visitorsEror.innerHTML='<span></span>'
+                //visitorsEror.removeChild(visitorsErorNanText); 
+                //visitorsEror.removeChild(visitorsErorText);
                 return;
             }
             
@@ -183,13 +194,15 @@ function validForm (){
             const emailValue=emailField.value;
 
             if ( emailValue =="") {
-                emailEror.appendChild(emailErorText); 
+                // emailEror.appendChild(emailErorText);
+                emailEror.innerHTML='<span>*укажите email</span>' 
                 emailField.style.backgroundColor="pink";
                 return;
             }
 
             if ( !emailValue =="") {
-                emailEror.removeChild(emailErorText); 
+                // emailEror.removeChild(emailErorText); 
+                emailEror.innerHTML='<span></span>'
                 emailField.style.backgroundColor="white";
                 return;
             }
@@ -230,13 +243,15 @@ function validForm (){
         const cataloglValue=catalogField.value;
 
         if ( cataloglValue ==2) {
-            catalogEror.appendChild(catalogErorText); 
+            // catalogEror.appendChild(catalogErorText); 
+            catalogEror.innerHTML='<span>*к сожалению, в данный момент эта рубрика недоступна</span>'
             catalogField.style.backgroundColor="pink";
             return;
         }
 
         if ( cataloglValue !==2) {
-            catalogEror.removeChild(catalogErorText); 
+            // catalogEror.removeChild(catalogErorText); 
+            catalogEror.innerHTML='<span></span>'
             catalogField.style.backgroundColor="white";
             return;
         }
@@ -283,12 +298,15 @@ function validForm (){
         const paymentlValue=document.forms[0].elements.paymentName.value;
         
         if ( paymentlValue == 3) {
-            paymentEror.appendChild(paymentErorText); 
+            //paymentEror.appendChild(paymentErorText); 
+            paymentEror.innerHTML='<span>*к сожалению, в данный момент это размещение недоступно</span>'
             return
         }
 
         if ( paymentlValue !== 3) {
-            paymentEror.removeChild(paymentErorText);
+            // paymentEror.removeChild(paymentErorText);
+            paymentEror.innerHTML='<span></span>'
+            return
             return
         }
         
@@ -313,12 +331,14 @@ function validForm (){
         const voteslValue=votesField.checked;
 
         if ( !voteslValue ) {
-            votesEror.appendChild(votesErorText); 
+            // votesEror.appendChild(votesErorText); 
+            votesEror.innerHTML='<span>*требуется разрешить отзывы</span>'
             return;
         }
 
         if ( voteslValue ) {
-            votesEror.removeChild(votesErorText); 
+            // votesEror.removeChild(votesErorText); 
+            votesEror.innerHTML='<span></span>'
             return;
         }
     }
@@ -376,49 +396,56 @@ function validForm (){
             const dateValue=dateField.value;
 
             if ( emailValue =="") {
-                emailEror.appendChild(emailErorText); 
+                // emailEror.appendChild(emailErorText); 
+                emailEror.innerHTML='<span>*это поле обязательное для заполнения</span>';
                 emailField.style.backgroundColor="pink";
                 emailField.focus();
                 eo.preventDefault();
             }
 
             if (visitorsValue =="") {
-                visitorsEror.appendChild(visitorsErorText); 
+                //visitorsEror.appendChild(visitorsErorText); 
+                visitorsEror.innerHTML='<span>*это поле обязательное для заполнения</span>'
                 visitorsField.style.backgroundColor="pink";
                 visitorsField.focus();
                 eo.preventDefault(); 
             }
 
             if ( isNaN(visitorsValue) ) {
-                visitorsEror.appendChild(visitorsErorNanText)
+                visitorsEror.innerHTML='<span>*введите число</span>'
+                //visitorsEror.appendChild(visitorsErorNanText)
                 visitorsField.style.backgroundColor="pink";
                 visitorsField.focus();
                
             }
             
             if ( dateValue =="") {
-                dateEror.appendChild(dateErorText); 
+                // dateEror.appendChild(dateErorText); 
+                dateEror.innerHTML='<span>*укажите дату</span>'
                 dateField.style.backgroundColor="pink";
                 dateField.scrollIntoView();
                 eo.preventDefault();
             }
 
             if (urlValue =="") {
-                urlEror.appendChild(urlErorText); 
+                // urlEror.appendChild(urlErorText); 
+                urlEror.innerHTML='<span>*это поле обязательное для заполнения</span>'
                 urlField.style.backgroundColor="pink";
                 urlField.focus();
                 eo.preventDefault();
             }
 
             if (siteNameValue.length>10 || siteNameValue =="") {
-                siteNameEror.appendChild(siteNameErorText); 
+                //siteNameEror.appendChild(siteNameErorText); 
+                siteNameEror.innerHTML='<span>*это поле обязательное для заполнения</span>'
                 siteNameField.style.backgroundColor="pink";
                 siteNameField.focus(); 
                 eo.preventDefault(); 
             }
 
             if ( devsValue =="") {
-                devsEror.appendChild(devsErorText); 
+                //devsEror.appendChild(devsErorText); 
+                devsEror.innerHTML='<span>*это поле обязательное для заполнения</span>'
                 devsField.style.backgroundColor="pink";
                 devsField.focus(); 
                 eo.preventDefault(); 
@@ -427,26 +454,29 @@ function validForm (){
 
             
             if ( cataloglValue ==1) {
-                
-                catalogEror.appendChild(catalogErorText2);
+                catalogEror.innerHTML='<span>*это значение по умолчанию. вы уверены?</span>'
+                // catalogEror.appendChild(catalogErorText2);
                 catalogField.style.backgroundColor="pink";
             }
 
             if (cataloglValue ==2) {
-                catalogEror.appendChild(catalogErorText); 
-                catalogField.style.backgroundColor="pink";
-                catalogField.focus();
+                // catalogEror.appendChild(catalogErorText); 
+                // catalogEror.innerHTML='<span>*к сожалению, в данный момент эта рубрика недоступна</span>'
+                // catalogField.style.backgroundColor="pink";
+                // catalogField.focus();
                 eo.preventDefault();
             }
 
             if ( !voteslValue ) {
-                votesEror.appendChild(votesErorText);
+                // votesEror.appendChild(votesErorText);
+                votesEror.innerHTML='<span>*вы ничего не выбрали</span>'
                 votesField.scrollIntoView();
                 eo.preventDefault();
             }
 
             if ( paymentlValue =="") {
-                paymentEror.appendChild(paymentErorText2);
+                // paymentEror.appendChild(paymentErorText2);
+                paymentEror.innerHTML='<span>  *выберите вариант размещения</span>'
                 paymentLabel.scrollIntoView();
                 eo.preventDefault();   
             }
@@ -458,19 +488,27 @@ function validForm (){
       
         }
 
-        paymentLabel.addEventListener('click',validatePaymentAfterSub,false);
-        function validatePaymentAfterSub(eo) {
-            eo=eo||window.event;
-            paymentEror.removeChild(paymentErorText2); 
-        }
+        // paymentLabel.addEventListener('click',validatePaymentAfterSub,false);
+        // function validatePaymentAfterSub(eo) {
+        //     eo=eo||window.event;
+        //     paymentEror.removeChild(paymentErorText2); 
+        // }
 
-        catalogField.addEventListener('click',validateCatalofAfterSub,false);
-        function validateCatalofAfterSub (eo) {
-            eo=eo||window.event;
-            catalogEror.removeChild(catalogErorText2);
-            catalogField.style.backgroundColor="";
-        }
+        // catalogField.addEventListener('click',validateCatalogAfterSub,false);
+        // function validateCatalogAfterSub (eo) {
+        //     eo=eo||window.event;
+        //     catalogEror.removeChild(catalogErorText2);
+        //     catalogField.style.backgroundColor="";
+        // }
 
+        // visitorsField.addEventListener('blur',validateVisitorsAfterSub,false);
+        // function validateVisitorsAfterSub (eo) {
+        //     eo=eo||window.event;
+        //     if ( !visitorsValue =="" ) {
+        //         visitorsEror.innerHTML='<span></span>'
+        //         //visitorsEror.removeChild(visitorsErorText);
+        // }
+        // }
 }
 
 validForm ()
