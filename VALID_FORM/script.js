@@ -55,7 +55,7 @@ function validForm (){
 
                 if (siteNameValue.length>10 || siteNameValue =="") {
                     //siteNameEror.appendChild(siteNameErorText); 
-                    siteNameEror.innerHTML='<span>*это поле обязательное для заполнения (длина не больше 10)</span>'
+                    siteNameEror.innerHTML='<span>*это поле обязательное для заполнения (длина поля не должна составлять больше 10 симоволов)</span>'
                     siteNameField.style.backgroundColor="pink";
                     return;
                 }
@@ -195,7 +195,7 @@ function validForm (){
 
             if ( emailValue =="") {
                 // emailEror.appendChild(emailErorText);
-                emailEror.innerHTML='<span>*укажите email</span>' 
+                emailEror.innerHTML='<span>*это поле обязательное для заполнения</span>' 
                 emailField.style.backgroundColor="pink";
                 return;
             }
