@@ -242,14 +242,14 @@ function validForm (){
         
         const cataloglValue=catalogField.value;
 
-        if ( cataloglValue ==2) {
+        if ( cataloglValue ==1) {
             // catalogEror.appendChild(catalogErorText); 
-            catalogEror.innerHTML='<span>*к сожалению, в данный момент эта рубрика недоступна</span>'
+            catalogEror.innerHTML='<span>*это значение по умолчанию. вы уверены?</span>'
             catalogField.style.backgroundColor="pink";
             return;
         }
 
-        if ( cataloglValue !==2) {
+        if ( cataloglValue !==1) {
             // catalogEror.removeChild(catalogErorText); 
             catalogEror.innerHTML='<span></span>'
             catalogField.style.backgroundColor="white";
@@ -355,20 +355,29 @@ function validForm (){
     const descErorText= document.createTextNode("  *это поле не является обязательным")
         form.appendChild(descEror);
     
-        descField.addEventListener('focus',validateDescFocus,false);
-        function validateDescFocus (eo) {
-            eo=eo||window.event;
-            descEror.appendChild(descErorText); 
-            descField.style.backgroundColor="green";
-            return;
-        }
+        // descField.addEventListener('focus',validateDescFocus,false);
+        // function validateDescFocus (eo) {
+        //     eo=eo||window.event;
+        //     descEror.appendChild(descErorText); 
+        //     descField.style.backgroundColor="green";
+        //     return;
+        // }
 
         descField.addEventListener('blur',validateDescBlur,false);
         function validateDescBlur (eo) {
             eo=eo||window.event;
-            descEror.removeChild(descErorText); 
-            descField.style.backgroundColor="white";
+            // descEror.removeChild(descErorText);
+            const desclValue=descField.value;
+            if ( desclValue ==""){
+            descEror.innerHTML='<span>*это поле обязательное для заполнения</span>' 
+            descField.style.backgroundColor="pink";
             return;
+            }
+            if ( !desclValue ==""){
+                descEror.innerHTML='<span></span>' 
+                descField.style.backgroundColor="";
+                return;
+                }
         }
     form.appendChild(document.createElement("br"));
 
@@ -394,6 +403,14 @@ function validForm (){
             const paymentlValue=document.forms[0].elements.paymentName.value;
             const voteslValue=votesField.checked;
             const dateValue=dateField.value;
+            const desclValue=descField.value;
+
+            if ( desclValue ==""){
+                descEror.innerHTML='<span>*это поле обязательное для заполнения</span>' 
+                descField.style.backgroundColor="pink";
+                descField.focus();
+                eo.preventDefault();
+                }
 
             if ( emailValue =="") {
                 // emailEror.appendChild(emailErorText); 
@@ -457,15 +474,16 @@ function validForm (){
                 catalogEror.innerHTML='<span>*это значение по умолчанию. вы уверены?</span>'
                 // catalogEror.appendChild(catalogErorText2);
                 catalogField.style.backgroundColor="pink";
+                eo.preventDefault();
             }
 
-            if (cataloglValue ==2) {
+            // if (cataloglValue ==2) {
                 // catalogEror.appendChild(catalogErorText); 
                 // catalogEror.innerHTML='<span>*к сожалению, в данный момент эта рубрика недоступна</span>'
                 // catalogField.style.backgroundColor="pink";
                 // catalogField.focus();
-                eo.preventDefault();
-            }
+                
+            // }
 
             if ( !voteslValue ) {
                 // votesEror.appendChild(votesErorText);
