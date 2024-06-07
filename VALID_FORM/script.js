@@ -437,7 +437,7 @@ function validForm (){
 
             if (siteNameValue.length>10 || siteNameValue =="") {
                 //siteNameEror.appendChild(siteNameErorText); 
-                siteNameEror.innerHTML='<span>*это поле обязательное для заполнения</span>'
+                siteNameEror.innerHTML='<span>*это поле обязательное для заполнения (длина поля не должна составлять больше 10 симоволов)</span>'
                 siteNameField.style.backgroundColor="pink";
                 siteNameField.focus(); 
                 eo.preventDefault(); 
