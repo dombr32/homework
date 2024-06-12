@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=UTF-8>
+    <title>drag&amp;drop</title>
+  </head>
+  <body style='min-height: 100vh'>
+<img src='http://fe.it-academy.by/Sites/0000007/sax.jpg'>
+<img src='http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png' width=100>
+<img src='http://fe.it-academy.by/Sites/0000007/Man-and-woman.png' width=150>
+<img src='http://fe.it-academy.by/Sites/0000007/No_smoking.png' style='padding-left: 50px'>
+<!-- <img src="https://png.pngtree.com/png-vector/20191121/ourmid/pngtree-blue-bird-vector-or-color-illustration-png-image_2013004.jpg"> -->
+
+<script>
+  // здесь ваш код
+"use strict";
+
+window.addEventListener('load',documentReady,false);
+    function documentReady() {
+
+  let arrWidth = [ ];
+  let arrHeight = [ ];
+  const elems=document.getElementsByTagName('img');
+
+  for (let i=0; i<elems.length; i++){                   //цикл, чтобы найти наибольшую высоту
+    arrHeight.push(document.images[i].height);
+  }
+  let maxHeight = Math.max.apply(null, arrHeight);
+
+
+  let z = 0;                                            //zindex (задаем переменную в глобальной области видимости, потом меняем ее при нажатой мыши)
+
+  for (let i=0; i<elems.length; i++) {
+      const elem = elems[i];
+
+      elem.style.position="absolute";
+      elem.style.paddingLeft="5px";
+      elem.style.paddingRight="5px";
+
+
+      arrWidth.push(document.images[i].clientWidth)
+      
+      if (i>1){                                                         // по оси Х
+       
+        function sum  (r, w) {
+        return r+=w
+      }                        
+
+      let startX = arrWidth.reduce(sum, 0) - document.images[i].clientWidth;                     // clientwidth для учета отступов
+      elem.style.left= (startX + 8) + 'px';                                                      // прибавляем 8 (это margin body)
+      
+      } else { 
+        elem.style.left= (arrWidth[i-1] + 8) + 'px';                    // прибавляем 8 (это margin body)
+      }
+
+      let startY = maxHeight - document.images[i].height;                // по оси Y (от наибольшей высоты отнимаем высоту элемента)
+      elem.style.top= startY  + 'px';
+
+      elem.ondragstart = function(eo) {
+        eo=eo||window.event;
+        eo.preventDefault();
+      };
+
+      elem.ondragover = function(eo) {
+        eo=eo||window.event;
+        eo.preventDefault();
+      };
+
+      elem.ondrop = function(eo) {
+        eo=eo||window.event;
+        eo.preventDefault();
+      };
+
+
+      elem.onmousedown = ElemMouseDown;
+      
+
+      function ElemMouseDown(eo) {
+        eo=eo||window.event;
+        elem.style.position="absolute";
+        elem.style.zIndex = z+=1;                             // увеличиваем zindex при нажатии
+
+        let ShiftX=eo.pageX-elem.offsetLeft;
+        let ShiftY=eo.pageY-elem.offsetTop;
+
+        function ElemMouseMove(eo) {
+          eo=eo||window.event;
+          elem.style.left= eo.pageX - ShiftX + 'px';
+          elem.style.top= eo.pageY - ShiftY + 'px';
+          elem.style.cursor="cell";
+        }
+
+        document.addEventListener('mousemove', ElemMouseMove, false);
+
+        function ElemMouseUp(eo) {
+          eo=eo||window.event;
+          elem.style.cursor="auto";
+          document.removeEventListener('mousemove', ElemMouseMove, false);
+        }
+
+        document.addEventListener('mouseup', ElemMouseUp, false);
+        
+  }
+
+
+  }
+}
+
+
+
+</script>
+
+  </body>
+</html>
