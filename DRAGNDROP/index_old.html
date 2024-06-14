@@ -18,18 +18,15 @@
 window.addEventListener('load',documentReady,false);
     function documentReady() {
 
-
-
-  let arrLeft = [ ];
-  let arrTop = [ ];
+  let arrWidth = [ ];
+  let arrHeight = [ ];
   const elems=document.getElementsByTagName('img');
-console.log(elems)
 
-
-  for (let i=0; i<elems.length; i++){     
-    arrLeft.push(document.images[i].offsetLeft);              //цикл, чтобы найти положение элементов по оси Х и Y
-    arrTop.push(document.images[i].offsetTop);
+  for (let i=0; i<elems.length; i++){                   //цикл, чтобы найти наибольшую высоту
+    arrHeight.push(document.images[i].height);
   }
+  let maxHeight = Math.max.apply(null, arrHeight);
+
 
   let z = 0;                                            //zindex (задаем переменную в глобальной области видимости, потом меняем ее при нажатой мыши)
 
@@ -38,9 +35,24 @@ console.log(elems)
 
       elem.style.position="absolute";
 
-       elem.style.left= arrLeft[i] + 'px';       // достаём из массива координаты относительного позиционированния 
+
+      arrWidth.push(document.images[i].clientWidth)
       
-       elem.style.top= arrTop[i]  + 'px';
+      if (i>1){                                                         // по оси Х
+       
+        function sum  (r, w) {
+        return r+=w
+      }                        
+
+      let startX = arrWidth.reduce(sum, 0) - document.images[i].clientWidth;                     // clientwidth для учета отступов
+      elem.style.left= (startX + 8) + 'px';                                                      // прибавляем 8 (это margin body)
+      
+      } else { 
+        elem.style.left= (arrWidth[i-1] + 8) + 'px';                    // прибавляем 8 (это margin body)
+      }
+
+      let startY = maxHeight - document.images[i].height;                // по оси Y (от наибольшей высоты отнимаем высоту элемента)
+      elem.style.top= startY  + 'px';
 
       elem.ondragstart = function(eo) {
         eo=eo||window.event;
