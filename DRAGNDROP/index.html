@@ -18,12 +18,10 @@
 window.addEventListener('load',documentReady,false);
     function documentReady() {
 
-
-
   let arrLeft = [ ];
   let arrTop = [ ];
   const elems=document.getElementsByTagName('img');
-console.log(elems)
+  // console.log(elems)
 
 
   for (let i=0; i<elems.length; i++){     
@@ -82,9 +80,11 @@ console.log(elems)
           eo=eo||window.event;
           elem.style.cursor="auto";
           document.removeEventListener('mousemove', ElemMouseMove, false);
+          document.removeEventListener('mouseup', ElemMouseUp, false);
         }
 
         document.addEventListener('mouseup', ElemMouseUp, false);
+        
         
   }
 
