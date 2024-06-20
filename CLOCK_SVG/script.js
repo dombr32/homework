@@ -107,7 +107,8 @@ let submit = document.createElement("input");
 
                 let numX, numY;
 
-                if (i>9){
+                
+                if (i>9){   //смещение для двузначных чисел 
                     numX = smallCircleX-fontNum/2;
                     numY = smallCircleY+fontNum/4
                 } else {
