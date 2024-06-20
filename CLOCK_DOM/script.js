@@ -50,7 +50,7 @@ let submit = document.createElement("input");
             
             let minuteArrow = document.createElement("div");
             minuteArrow.style.height = diameter / 3 +'px';
-            minuteArrow.style.width = diameter / 50 +'px'; //'6px';
+            minuteArrow.style.width = diameter / 70 +'px'; //'6px';
             minuteArrow.style.backgroundColor = "black";
             minuteArrow.style.position="absolute";
             minuteArrow.style.borderRadius = "40%";
