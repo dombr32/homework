@@ -43,21 +43,21 @@ let submit = document.createElement("input");
             
             let hourArrow = document.createElement("div");
             hourArrow.style.height = diameter / 4 +'px';
-            hourArrow.style.width = '8px';
+            hourArrow.style.width = diameter / 50 +'px'; //'8px';
             hourArrow.style.backgroundColor = "black";
             hourArrow.style.position="absolute";
             hourArrow.style.borderRadius = "40%";
             
             let minuteArrow = document.createElement("div");
             minuteArrow.style.height = diameter / 3 +'px';
-            minuteArrow.style.width = '6px';
+            minuteArrow.style.width = diameter / 50 +'px'; //'6px';
             minuteArrow.style.backgroundColor = "black";
             minuteArrow.style.position="absolute";
             minuteArrow.style.borderRadius = "40%";
             
             let secondArrow = document.createElement("div");
             secondArrow.style.height = diameter / 2 +'px';
-            secondArrow.style.width = '3px';
+            secondArrow.style.width = diameter / 100 +'px'; //'3px';
             secondArrow.style.backgroundColor = "red";
             secondArrow.style.position="absolute";
             secondArrow.style.borderRadius = "40%";
@@ -74,11 +74,8 @@ let submit = document.createElement("input");
     let clockCenterX=clock.offsetLeft+clock.offsetWidth/2;  
     let clockCenterY=clock.offsetTop+clock.offsetHeight/2;
 
-    
-    // запускаем первую функцию для отображения текущего времени сразу, и далее для продолжения работы времени
-     setTimeout(updateTime); 
-     setInterval(updateTime,1000);
 function updateTime() {
+    
     const currTime=new Date();
     const timeStr=formatDateTime(currTime);
     time.innerHTML=timeStr;
@@ -100,6 +97,8 @@ function updateTime() {
         minuteArrow.style.transform = `rotate(${(m)+(s/60)}deg)`;
         secondArrow.style.transform = `rotate(${(s)}deg)`;
 }
+
+
 
 for (let i=1; i<=12; i++){
     let smallCircle = document.createElement("div");
@@ -142,8 +141,12 @@ secondArrow.style.left= clockCenterY + 'px';
 secondArrow.style.top=secondArrowCenterY+'px';
 
 
-
 clock.appendChild(time);
+
+//запускаем функцию для отображения текущего времени сразу, и далее для продолжения работы времени
+updateTime();
+setInterval(updateTime,1000);
+
         return
 }
 

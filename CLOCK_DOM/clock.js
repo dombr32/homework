@@ -8,8 +8,8 @@ function documentReady() {
 
     
     // запускаем первую функцию для отображения текущего времени сразу, и далее для продолжения работы времени
-     setTimeout(updateTime); 
-     setInterval(updateTime,1000);
+    //  setTimeout(updateTime); 
+    //  setInterval(updateTime,1000);
 function updateTime() {
     const currTime=new Date();
     const timeStr=formatDateTime(currTime);
@@ -75,6 +75,9 @@ secondArrow.style.top=secondArrowCenterY+'px';
 
 
 clock.appendChild(time);
+//запускаем функцию для отображения текущего времени сразу, и далее для продолжения работы времени
+updateTime(); 
+setInterval(updateTime,1000);
 
 }
 
