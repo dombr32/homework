@@ -105,8 +105,17 @@ let submit = document.createElement("input");
                 smallCircle.setAttribute("cx", smallCircleX);
                 smallCircle.setAttribute("cy", smallCircleY);
 
-                let numX = smallCircleX-fontNum/3;
-                let numY = smallCircleY+fontNum/4;
+                let numX, numY;
+
+                if (i>9){
+                    numX = smallCircleX-fontNum/2;
+                    numY = smallCircleY+fontNum/4
+                } else {
+                    numX = smallCircleX-fontNum/3;
+                    numY = smallCircleY+fontNum/4;
+                }
+
+            
 
                 number.setAttribute("x", numX);
                 number.setAttribute("y", numY);
