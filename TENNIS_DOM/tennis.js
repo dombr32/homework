@@ -22,7 +22,7 @@ document.body.appendChild(score);
 let field = document.createElement('div');
 field.style.width = '700px';
 field.style.height = '300px';
-field.style.backgroundColor = 'yellow';
+field.style.backgroundColor = 'Aquamarine';
 field.style.position = 'relative';
 field.style.border = '1px black solid';
 
@@ -36,7 +36,7 @@ let ball = document.createElement('div');
 ball.style.width = '40px';
 ball.style.height = '40px';
 ball.style.borderRadius = '50%';
-ball.style.backgroundColor = 'red';
+ball.style.backgroundColor = 'Indigo';
 ball.style.position = 'absolute';
 
 let ballH = {
@@ -57,10 +57,9 @@ field.appendChild(ball)
 
 //racket left
 let racketLeft = document.createElement('div');
-racketLeft.style.backgroundColor = 'green';
+racketLeft.style.backgroundColor = 'DeepPink';
 racketLeft.style.width = '10px';
 racketLeft.style.height = '80px';
-racketLeft.style.backgroundColor = 'green';
 racketLeft.style.position = 'absolute';
 field.appendChild(racketLeft);
 
@@ -79,10 +78,9 @@ let racketLeftH = {
 
 //racket right
 let racketRight = document.createElement('div');
-racketRight.style.backgroundColor = 'green';
 racketRight.style.width = '10px';
 racketRight.style.height = '80px';
-racketRight.style.backgroundColor = 'blue';
+racketRight.style.backgroundColor = 'YellowGreen';
 racketRight.style.position = 'absolute';
 racketRight.style.left = '690px'
 field.appendChild(racketRight);
