@@ -1,27 +1,28 @@
-function ObjStorageFunc (){
+class ObjStorageClass {
 
-    this.storage = {}
-    this.addValue = function(key, value){
+    storage = {}
+
+    addValue (key, value){
         this.storage[key]=value;
     };
 
-    this.getValue = function (key){
+    getValue (key){
         return this.storage[key];
     };
 
-    this.deleteValue = function (key){
+    deleteValue (key){
         if (key in this.storage){
             delete this.storage[key];
             return true
         } return false
     }
 
-    this.getKeys = function(){
+    getKeys (){
         return Object.keys(this.storage);
     }
 }
 
-const drinkStorage = new ObjStorageFunc;
+const drinkStorage = new ObjStorageClass;
 
 let enterInfo = document.createElement("input");
 enterInfo.setAttribute("type", "submit");

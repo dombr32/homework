@@ -1,27 +1,44 @@
-function ObjStorageFunc (){
+class LocStorageClass {
 
-    this.storage = {}
-    this.addValue = function(key, value){
+    constructor () {
+    this.storage = {};
+
+        if (localStorage){
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key(i);
+                let value = JSON.parse(localStorage.getItem(key));;
+                this.storage[key] = value;
+            }
+        }
+
+        
+    }
+
+    addValue (key, value, type){
         this.storage[key]=value;
+        let storageJSON = JSON.stringify(this.storage);
+        localStorage.setItem(type,storageJSON);
     };
 
-    this.getValue = function (key){
+    getValue (key){
         return this.storage[key];
     };
 
-    this.deleteValue = function (key){
+    deleteValue (key, type){
         if (key in this.storage){
             delete this.storage[key];
+            let storageJSON = JSON.stringify(this.storage);
+            localStorage.setItem(type,storageJSON);
             return true
         } return false
     }
 
-    this.getKeys = function(){
+    getKeys (){
         return Object.keys(this.storage);
     }
 }
 
-const drinkStorage = new ObjStorageFunc;
+const drinkStorage = new LocStorageClass;
 
 let enterInfo = document.createElement("input");
 enterInfo.setAttribute("type", "submit");
@@ -53,11 +70,12 @@ function addDrink (){
     const name = prompt("Введите название напитка");
     const alco = confirm("Это алкогольный напиток?");
     const recipe = prompt("Введите рецепт напитка");
+    const type = "drink";
     const info ={
         alco : alco, 
         recipe : recipe
     };
-    drinkStorage.addValue(name, info)
+    drinkStorage.addValue(name, info, type);
 };
 
 function getDrink (){
@@ -74,7 +92,8 @@ function getDrink (){
 
 function delDrink (){
     const name = prompt("Введите название напитка");
-    const del = drinkStorage.deleteValue(name);
+    const type = "drink";
+    const del = drinkStorage.deleteValue(name, type);
     if (del){
         alert('напиток удален');
     } else alert('Такого напитка нет');
