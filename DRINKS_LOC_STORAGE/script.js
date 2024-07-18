@@ -5,14 +5,12 @@ class LocStorageClass {
     this.storage = {};
     this.type = type;
 
-        if (localStorage){
-            for (let i = 0; i < localStorage.length; i++) {
-                let key = localStorage.key(i);
-                let value = JSON.parse(localStorage.getItem(key));
-                if (key==this.type){
-                    this.storage = value;
-                }
-            }
+        if (localStorage[this.type]){
+            let key = localStorage[this.type]; //переменная key получает строку 
+            // console.log(typeof(key))
+            let value = JSON.parse((key)); //преобразоваем строку в хэш, где ключ - название напитка, значение - инфо
+            this.storage = value;
+            
         }
     }
     
